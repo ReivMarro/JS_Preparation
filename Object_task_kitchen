@@ -1,0 +1,54 @@
+We like our kitchens to be organised, but we seem to be receiving lots of jumbled up kitchens in this function. This will never do!
+Although kitchen is always an object, it may have different properties on each test, but there are some problems that keep popping up.
+Here's an example problematic kitchen:
+
+{
+  hasFridge: true,
+  favouriteAppliance: 'KeTtlE',
+  food: 'eGgS',
+  shelvesInCupboards: 3,
+  shelvesNotInCupboards: 2,
+  petName: 'RhuBarB',
+  hoover: 'DysOn'
+};
+To sort out our kitchen:
+
+Fix the jumbled string values - replace them all with versions that are all lowercase
+Remove the hoover property - hoovers don't belong in the kitchen
+We only need to know the total number of shelves. If shelvesInCupboards and/or shelvesNotInCupboards are present, delete these keys
+Add a key of totalShelves which is equal to the sum of the values that were under shelvesInCupboards and shelvesNotInCupboards.
+A fixed-up version of the above example kitchen should look like this, though remember that object properties are not ordered, so it doesn't matter if your properties appear to be in a different order.
+
+const kitchenItems = {
+  hasFridge: true,
+  favouriteAppliance: 'kettle',
+  food: "eggs",
+  petName: 'rhubarb',
+  totalShelves: 5
+};
+The console.log at the start of the function will show you what the kitchen looks like at the start of your code in the console. You could log the kitchen at any point in your code to see how it has changed.
+
+ANSWER:
+
+function sortTheKitchen(kitchen) {
+    
+    for (const key in kitchen)
+        if (typeof kitchen[key] === 'string'){
+            kitchen[key] = kitchen[key].toLowerCase()
+        }
+         let totalShelves = 0
+          for (const key in kitchen){
+          if (key = 'shelvesInCupboards' || key = 'shelvesNotInCupboards'){
+              totalShelves += kitchen[key]
+              }
+          }
+          kitchen.totalShelves = totalShelves
+
+          delete kitchen.shelvesInCupboards
+          delete kitchen.shelvesNotInCupboards
+          delete kitchen.hoover
+
+    console.log(kitchen);
+    // Don't change the code below this line
+    return kitchen;
+}
